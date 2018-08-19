@@ -27,24 +27,24 @@ class Game {
         this.gameContext = ctx;
         this.gameContext.font = "30px Orbitron";
 
-        window.addEventListener("keydown", function (e) {
-            Game.keysPressed[e.which] = true;
-        });
+        window.addEventListener("keydown", (e) =>
+            Game.keysPressed[e.which] = true
+        );
 
-        window.addEventListener("keyup", function (e) {
-            Game.keysPressed[e.which] = false;
-        });
+        window.addEventListener("keyup", (e) =>
+            Game.keysPressed[e.which] = false
+        );
 
         var paddleWidth: number = 20, paddleHeight: number = 60, ballSize: number = 10, wallOffset: number = 20;
 
-        this.player1 = new Paddle(paddleWidth, paddleHeight, wallOffset, this.gameCanvas.height / 2 - paddleHeight / 2,KeyBindings.KEY_W, KeyBindings.KEY_S);
-        this.computerPlayer = new Paddle(paddleWidth, paddleHeight, this.gameCanvas.width - (wallOffset + paddleWidth), this.gameCanvas.height / 2 - paddleHeight / 2,  KeyBindings.UP, KeyBindings.DOWN);
+        this.player1 = new Paddle(paddleWidth, paddleHeight, wallOffset, this.gameCanvas.height / 2 - paddleHeight / 2, KeyBindings.KEY_W, KeyBindings.KEY_S);
+        this.computerPlayer = new Paddle(paddleWidth, paddleHeight, this.gameCanvas.width - (wallOffset + paddleWidth), this.gameCanvas.height / 2 - paddleHeight / 2, KeyBindings.UP, KeyBindings.DOWN);
         //this.computerPlayer = new ComputerPaddle(paddleWidth, paddleHeight, this.gameCanvas.width - (wallOffset + paddleWidth), this.gameCanvas.height / 2 - paddleHeight / 2);
         this.ball = new Ball(ballSize, ballSize, this.gameCanvas.width / 2 - ballSize / 2, this.gameCanvas.height / 2 - ballSize / 2);
 
     }
 
-    drawBoardDetails() {
+    drawBoard() {
 
         //draw court outline
         this.gameContext.strokeStyle = "#fff";
@@ -72,7 +72,7 @@ class Game {
         this.gameContext.fillStyle = "#000";
         this.gameContext.fillRect(0, 0, this.gameCanvas.width, this.gameCanvas.height);
 
-        this.drawBoardDetails();
+        this.drawBoard();
         this.player1.draw(this.gameContext);
         this.computerPlayer.draw(this.gameContext);
         this.ball.draw(this.gameContext);
@@ -92,7 +92,7 @@ class Entity {
     xVel: number = 0;
     yVel: number = 0;
 
-    
+
     constructor(w: number, h: number, x: number, y: number) {
         this.width = w;
         this.height = h;
@@ -111,7 +111,7 @@ class Paddle extends Entity {
     upKey: number;
     downKey: number;
 
-    constructor(w: number, h: number, x: number, y: number, upKey: number, downKey:number) {        
+    constructor(w: number, h: number, x: number, y: number, upKey: number, downKey: number) {
         super(w, h, x, y);
         this.upKey = upKey;
         this.downKey = downKey;
