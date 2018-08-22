@@ -1,4 +1,4 @@
-const rootElement: HTMLElement | null = document.getElementById("root");
-if (rootElement != null) {
-    rootElement.innerHTML = "<h1>Hello TypeScript</h1>";
-}
+import Game from './Game';
+
+const game = new Game();
+game.run();
